@@ -57,6 +57,9 @@ dependencies {
 
     implementation(libs.splash.screen)
 
+    // DataStore Preferences
+    implementation(libs.dataStore.preferences)
+
     // Dagger Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
