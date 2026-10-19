@@ -81,7 +81,7 @@ fun OnBoardingScreen(modifier: Modifier = Modifier) {
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == 3) {
-                                // Navigate to Home Screen
+                                // TODO : Navigate to Home Screen
                             }else{
                                 pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
                             }
