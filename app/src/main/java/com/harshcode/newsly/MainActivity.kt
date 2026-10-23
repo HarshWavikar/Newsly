@@ -11,9 +11,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.harshcode.newsly.domain.usecases.AppEntryUseCases
 import com.harshcode.newsly.presentation.onBoarding.OnBoardingScreen
+import com.harshcode.newsly.presentation.onBoarding.OnBoardingViewModel
 import com.harshcode.newsly.ui.theme.NewslyTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -25,7 +27,7 @@ import kotlin.time.Duration.Companion.milliseconds
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
+    lateinit var useCases: AppEntryUseCases
 
     private var keepSplashScreen = true
 
@@ -39,20 +41,22 @@ class MainActivity : ComponentActivity() {
             keepSplashScreen = false
         }
         lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect {
+            useCases.readAppEntry().collect {
                 Log.d("Test",  it.toString())
             }
         }
+
         enableEdgeToEdge()
         setContent {
             NewslyTheme {
-                    Box(
-                        modifier = Modifier
-                            .background(MaterialTheme.colorScheme.background)
-                    ) {
-                        OnBoardingScreen()
-                    }
+                Box(
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.background)
+                ) {
+                    val viewModel : OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(event = viewModel::onEvent)
                 }
             }
+        }
     }
 }
