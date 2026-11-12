@@ -1,4 +1,4 @@
-package com.harshcode.newsly.domain.usecases
+package com.harshcode.newsly.domain.usecases.app_entry
 
 import com.harshcode.newsly.domain.manager.LocalUserManager
 import kotlinx.coroutines.flow.Flow
