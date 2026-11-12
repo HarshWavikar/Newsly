@@ -19,4 +19,7 @@ object Dimens {
     val ExtraSmallPadding2 = 6.dp
 
     val SmallIconSize = 11.dp
+
+    val IconShimmerSize = 16.dp
+    val TextShimmerHeight = 20.dp
 }
